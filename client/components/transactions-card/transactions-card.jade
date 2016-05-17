@@ -8,6 +8,6 @@
           a(ui-sref="transaction-stream.transaction({hash:transaction.hash})")
             h3.card-body-stacked-list-item-title
               i.fa.fa-bitcoin.card-body-stacked-list-item-title-icon
-              span(ng-bind="transaction.amount")
+              span(ng-bind="transaction.amount|number")
             span.transaction-list-item-date(ng-bind="transaction.time | date:'MMM d, y h:mm:ss a'")
             i.fa.fa-chevron-right.card-body-stacked-list-item-ui-icon
