@@ -2,7 +2,15 @@
 
 A bitcoin transaction viewer built with [Angular](https://angularjs.org/), [Toshi API](https://toshi.io/docs/#introduction) and [reconnecting websocket](https://github.com/joewalnes/reconnecting-websocket).
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.6.1.
+This project was generated with the [Yeoman](http://yeoman.io/) [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.6.1.
+
+### Highlights
+
+- [transactions-stream.js](https://github.com/whayler1/bitcointransactions/blob/master/client/app/transaction-stream/transaction-stream.js) is where all of the routing is configured. I use angulars ui-router resolve attribute to get individual transaction data before rendering the `transactions-stream.transaction` route.
+- All of the components are in the [/client/components/](https://github.com/whayler1/bitcointransactions/tree/master/client/components) folder.
+  + [transactions-card](https://github.com/whayler1/bitcointransactions/tree/master/client/components/transactions-card) is where the asyncronously updated list of transactions are generated.
+  + [transaction-card](https://github.com/whayler1/bitcointransactions/tree/master/client/components/transaction-card) is the single transaction view.
+  + The [transactions service](https://github.com/whayler1/bitcointransactions/blob/master/client/components/transactions/transactions.service.js) is where the socket connection is made and the list of transactions is stored on the client.
 
 ## Getting Started
 
