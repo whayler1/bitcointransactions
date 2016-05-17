@@ -18,13 +18,13 @@
 
 .card-header {
   padding: 15px;
-  border-bottom: 1px solid lighten(grey, 40%);
+  border-bottom: 1px solid @card-border-color;
 }
 
 .card-header-title {
   margin: 0;
   font-size: @font-m;
-  color: @font-color;
+  color: @font-color-strong;
   font-weight: 400;
 }
 
@@ -45,11 +45,62 @@
   padding: 0;
 
   >li {
+    position: relative;
     list-style: none;
-    border-top: 1px dotted @font-color;
-    
+    border-top: 1px dotted @card-border-color;
+
+    >a {
+      display: block;
+      padding: 15px;
+
+      &:hover,
+      &:focus {
+        background: lighten(grey, 49%);
+      }
+      &:active {
+
+      }
+    }
+
     &:first-child {
       border-top: none;
     }
+  }
+}
+
+.card-body-stacked-list-item-title {
+  margin: 0;
+  font-size: @font-s;
+  color: @font-color;
+  font-weight: 400;
+
+  a:hover &,
+  a:focus & {
+    color: @font-color-hover;
+  }
+  a:active & {
+    color: @font-color-active;
+  }
+}
+.card-body-stacked-list-item-title-icon {
+  margin-right: 7px;
+}
+
+.card-body-stacked-list-item-ui-icon {
+  display: inline-block;
+  font-size: @font-m;
+  height: @font-m;
+  color: @font-color-light;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -(@font-m/2);
+
+  a:hover &,
+  a:focus & {
+    color: @font-color-hover;
+  }
+  a:active & {
+    color: @font-color-active;
   }
 }

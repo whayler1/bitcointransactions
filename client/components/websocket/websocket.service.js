@@ -13,23 +13,16 @@ angular.module('bitcoinApp')
       return websocket;
     }
 
-    const connection = new ReconnectingWebSocket('wss://bitcoin.toshi.io');
+    const connection = new $window.ReconnectingWebSocket('wss://bitcoin.toshi.io');
 
     connection.onopen = function() {
       $log.log('Toshi.io: Connection open!');
 
-      var newTransactions = {
+      const newTransactions = {
         "subscribe" : "transactions"
       };
-      var newBlocks = {
-        "subscribe" : "blocks"
-      };
-      connection.send(JSON.stringify(newTransactions));
-      // connection.send(JSON.stringify(newBlocks));
-      // connection.send(JSON.stringify({
-      //   "fetch" : "latest_transaction"
-      // }));
 
+      connection.send(JSON.stringify(newTransactions));
     };
 
     connection.onclose = function() {
@@ -42,20 +35,16 @@ angular.module('bitcoinApp')
 
     connection.onmessage = function(e) {
       $log.log('%cnew message', 'background:grey')
-      var response = JSON.parse(e.data);
+      const response = JSON.parse(e.data);
 
-      // New Transaction
       if (response.subscription == "transactions" || response.fetched == "latest_transaction") {
 
         $log.log('%ctransactions:', 'background:pink', response);
-
-      } else if (response.subscription == "blocks" || response.fetched == "latest_block") {
-        $log.log('%cblocks:', 'background:aqua', response);
       }
-
     };
 
     websocket.connection = connection;
+
 
     return websocket;
   });

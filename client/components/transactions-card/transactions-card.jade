@@ -4,3 +4,10 @@
       h1.card-header-title Transactions
     .card-body.card-body-scroll
       ul.card-body-stacked-list
+        li(ng-repeat="transaction in transactions")
+          a(ng-click="onTransactionClick(transaction)")
+            h3.card-body-stacked-list-item-title
+              i.fa.fa-bitcoin.card-body-stacked-list-item-title-icon
+              span(ng-bind="transaction.amount")
+            span.transaction-list-item-date(ng-bind="transaction.time | date:'MMM d, y h:mm:ss a'")
+            i.fa.fa-chevron-right.card-body-stacked-list-item-ui-icon

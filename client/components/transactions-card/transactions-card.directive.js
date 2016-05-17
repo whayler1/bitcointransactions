@@ -5,7 +5,9 @@ angular.module('bitcoinApp')
     return {
       templateUrl: 'components/transactions-card/transactions-card.html',
       restrict: 'E',
-      scope: {},
+      scope: {
+        transactions: '='
+      },
       controller: 'TransactionsCardCtrl'
     };
   });

@@ -3,9 +3,11 @@
 angular.module('bitcoinApp')
   .controller('TransactionsCardCtrl', function (
     $scope,
-    $log,
-    websocket
+    $log
   ) {
 
-    $log.log('transaction card');
+    // $log.log('%ctransaction card', 'background:aqua', $scope.transactions.length);
+    $scope.onTransactionClick = (transaction) => {
+      $log.log('transaction:', transaction);
+    };
   });
