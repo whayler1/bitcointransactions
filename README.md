@@ -4,6 +4,8 @@ A bitcoin transaction viewer built with [Angular](https://angularjs.org/), [Tosh
 
 This project was generated with the [Yeoman](http://yeoman.io/) [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.6.1.
 
+![bitcoin transactions screengrab](https://github.com/whayler1/bitcointransactions/blob/master/client/assets/images/Screen%20Shot%202016-05-17%20at%206.41.27%20PM.png)
+
 ### Highlights
 
 - [transactions-stream.js](https://github.com/whayler1/bitcointransactions/blob/master/client/app/transaction-stream/transaction-stream.js) is where all of the routing is configured. I use angulars ui-router resolve attribute to get individual transaction data before rendering the `transactions-stream.transaction` route.
