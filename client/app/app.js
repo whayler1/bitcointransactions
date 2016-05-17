@@ -9,7 +9,7 @@ angular.module('bitcoinApp', [
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/transaction-stream');
 
     $locationProvider.html5Mode(true);
   });

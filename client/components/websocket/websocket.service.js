@@ -55,5 +55,7 @@ angular.module('bitcoinApp')
 
     };
 
+    websocket.connection = connection;
+
     return websocket;
   });

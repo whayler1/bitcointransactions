@@ -1,0 +1,55 @@
+@card-border-color: mix(@body-background, lighten(grey, 30%));
+@card-border-color-top: mix(@body-background, lighten(grey, 35%));
+@card-header-height: 49px;
+
+.card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 3px;
+  background: white;
+  border-top: 1px solid @card-border-color-top;
+  border-left: 1px solid @card-border-color;
+  border-right: 1px solid @card-border-color;
+  border-bottom: 2px solid @card-border-color;
+}
+
+.card-header {
+  padding: 15px;
+  border-bottom: 1px solid lighten(grey, 40%);
+}
+
+.card-header-title {
+  margin: 0;
+  font-size: @font-m;
+  color: @font-color;
+  font-weight: 400;
+}
+
+.card-body {
+  &.card-body-scroll {
+    position: absolute;
+    top: @card-header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.card-body-stacked-list {
+  margin: 0;
+  padding: 0;
+
+  >li {
+    list-style: none;
+    border-top: 1px dotted @font-color;
+    
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
