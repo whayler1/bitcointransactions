@@ -5,7 +5,7 @@
     .card-body.card-body-scroll
       ul.card-body-stacked-list
         li(ng-repeat="transaction in transactions")
-          a(ng-click="onTransactionClick(transaction)")
+          a(ui-sref="transaction-stream.transaction({hash:transaction.hash})")
             h3.card-body-stacked-list-item-title
               i.fa.fa-bitcoin.card-body-stacked-list-item-title-icon
               span(ng-bind="transaction.amount")

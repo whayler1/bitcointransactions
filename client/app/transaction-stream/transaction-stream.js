@@ -17,7 +17,7 @@ angular.module('bitcoinApp')
 
           const onUpdate = (transactionsList) => {
 
-            $state.go('transaction-stream', {
+            $state.go($state.current.name, {
               mostRecentHash: transactionsList[0].hash
             });
           };
@@ -27,6 +27,13 @@ angular.module('bitcoinApp')
 
           $scope.transactions = transactions.getTransactions();
         },
-        template: '<transactions-card transactions="transactions"></transactions-card>'
+        template: '<transactions-card transactions="transactions"></transactions-card><ui-view></ui-view>'
+      })
+      .state('transaction-stream.transaction', {
+        url: '/:hash',
+        resolve: {
+
+        },
+        template: '<h1>Transaction View!</h1>'
       });
   });
