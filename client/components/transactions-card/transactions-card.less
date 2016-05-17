@@ -3,3 +3,55 @@
   color: @font-color-light;
   font-weight: 400;
 }
+
+.transactions-card {
+  z-index: 10;
+}
+
+.transaction-table {
+  th, td {
+    font-size: @font-m;
+  }
+  th {
+    position: relative;
+    padding-right: 15px;
+    color: @font-color-strong;
+    text-align: left;
+
+    span {
+      position: relative;
+      display: inline-block;
+      background: white;
+      z-index: 5;
+      padding-right: 3px;
+    }
+
+    &::after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      left: 3px;
+      right: 0;
+      bottom: 4px;
+      border-bottom: 1px dotted @font-color;
+    }
+  }
+  td {
+    color: @font-color;
+    font-weight: 400;
+
+    i {
+      margin-right: 7px;
+    }
+  }
+}
+
+.tranactions-instructions {
+  position: absolute;
+  margin: 0;
+  top: 30px;
+  left: @left-column-width + 15px;
+  font-size: @font-m;
+  color: @font-color;
+  font-weight: 400;
+}

@@ -1,0 +1,30 @@
+.transaction-column
+  section.card.transaction-card
+    header.card-header
+      h1.card-header-title(ng-attr-title="{{transaction.hash}}")
+        i.fa.fa-hashtag.card-header-title-icon
+        span(ng-bind="transaction.hash")
+      a.card-header-close(ui-sref="transaction-stream")
+        i.fa.fa-times
+    .card-body.card-body-scroll.card-body-padded
+      table.transaction-table
+        tbody
+          tr
+            th 
+              span Amount
+            td
+              i.fa.fa-bitcoin
+              span(ng-bind="transaction.amount|number")
+          tr
+            th
+              span Fees
+            td
+              i.fa.fa-bitcoin
+              span(ng-bind="transaction.fees|number")
+          tr
+            th
+              span Size
+            td(ng-bind="transaction.size|number")
+      .card-body-bottom-nav
+        a.btn(ui-sref="transaction-stream") Close
+      

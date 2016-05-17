@@ -5,35 +5,27 @@ angular.module('bitcoinApp')
     $stateProvider
       .state('transaction-stream', {
         url: '/transaction-stream',
-        params: {
-          mostRecentHash: undefined
-        },
-        controller: (
-          $scope,
-          $state,
-          $log,
-          transactions
-        ) => {
-
-          const onUpdate = (transactionsList) => {
-
-            $state.go($state.current.name, {
-              mostRecentHash: transactionsList[0].hash
-            });
-          };
-          const deboundOnUpdate = _.debounce(onUpdate, 250, {maxWait:500})
-
-          transactions.addTransactionsListener(deboundOnUpdate);
-
-          $scope.transactions = transactions.getTransactions();
-        },
-        template: '<transactions-card transactions="transactions"></transactions-card><ui-view></ui-view>'
+        template: '<transactions-card></transactions-card><p class="tranactions-instructions">Click a transaction on the left to view details.</p><ui-view></ui-view>'
       })
       .state('transaction-stream.transaction', {
         url: '/:hash',
         resolve: {
+          transaction: ($http, $stateParams, $q, $log) => {
 
+            return $http.get(`/api/transactions?transactionHash=${$stateParams.hash}`).then(
+              res => {
+                // $log.log('SUCCESS!', res);
+                return $q.when(res.data);
+              },
+              res => {
+                $log.error('error retrieving transaction');
+              }
+            );
+          }
         },
-        template: '<h1>Transaction View!</h1>'
+        controller: ($scope, transaction) => {
+          $scope.transaction = transaction;
+        },
+        template: '<transaction-card transaction="transaction"></transaction-card>'
       });
   });

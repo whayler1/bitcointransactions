@@ -3,11 +3,16 @@
 angular.module('bitcoinApp')
   .controller('TransactionsCardCtrl', function (
     $scope,
-    $log
+    transactions
   ) {
 
-    // $log.log('%ctransaction card', 'background:aqua', $scope.transactions.length);
-    $scope.onTransactionClick = (transaction) => {
-      $log.log('transaction:', transaction);
+    const onUpdate = (transactionsList) => {
+
+      _.defer(() => $scope.$digest());
     };
+    const debounceOnUpdate = _.debounce(onUpdate, 250, {maxWait:1000})
+
+    transactions.addTransactionsListener(debounceOnUpdate);
+
+    $scope.transactions = transactions.getTransactions();
   });

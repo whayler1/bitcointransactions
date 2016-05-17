@@ -9,8 +9,6 @@ angular.module('bitcoinApp')
     const transactions = {};
 
     const transactionsList = [];
-    const blocksList = [];
-    const latestBlock = {};
     const listeners = [];
 
     if(!_.hasIn($window, 'WebSocket') || !_.hasIn($window, 'ReconnectingWebSocket')) {
@@ -39,12 +37,9 @@ angular.module('bitcoinApp')
     connection.onmessage = function(e) {
 
       const response = JSON.parse(e.data);
-      $log.log('%cnew message', 'background:grey', response)
+      // $log.log('%cnew message', 'background:grey', response)
 
-      if(response.subscription === 'latest_block') {
-
-        angular.copy(response.data, latestBlock);
-      }else if (response.subscription === 'transactions') {
+      if (response.subscription === 'transactions') {
 
         const transaction = response.data;
         transaction.time = new Date();
@@ -54,10 +49,6 @@ angular.module('bitcoinApp')
         if(transactionsList.length > 100) transactionsList.pop();
 
         listeners.forEach(listener => listener(transactionsList));
-      }else if (response.subscription === 'blocks') {
-        blocksList.push(response.data);
-        if(blocksList.length > 200) blocksList.pop();
-        $log.log('%cblocksList!', 'background:mocassin', blocksList);
       }
     };
 
@@ -76,8 +67,6 @@ angular.module('bitcoinApp')
     transactions.getTransactions = () => transactionsList;
 
     transactions.addTransactionsListener = addTransactionsListener;
-
-    transactions.latestBlock = latestBlock;
 
     return transactions;
   });
